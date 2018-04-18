@@ -1,0 +1,8 @@
+br\com\dbc\cliente\model\Cliente.class
+br\com\dbc\cliente\model\Endereco.class
+br\com\dbc\cliente\DAO\ClienteDAOImpl.class
+br\com\dbc\cliente\util\JPAUtil.class
+br\com\dbc\app\Application.class
+br\com\dbc\service\IClienteService.class
+br\com\dbc\service\ClienteServiceImpl.class
+br\com\dbc\cliente\DAO\IClienteDAO.class

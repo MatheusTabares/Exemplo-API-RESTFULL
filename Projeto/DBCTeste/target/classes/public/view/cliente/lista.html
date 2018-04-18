@@ -1,0 +1,172 @@
+<div class="container">
+	<div class="row" style="border-bottom-style: groove;">
+		<div class="col-md-12"><h1 style="text-align:center;">DBC Company</h1></div>
+	</div>
+	<div class="row">
+		<div class="col-md-4" style="border-style: groove;">
+			<h3>Cadastro</h3>
+			<form  ng-submit="salvarAtualizar(cliente)" name="form" novalidate>
+				<div class="form-group">
+					<label for="nome">Nome:</label> 
+					<input id="nome" type="text" ng-model="cliente.nome"
+						name="nome" class="form-control" required />
+				</div>
+		
+				<div class="form-group">
+					<label for="limiteCredito">Limite de Crédito:</label>
+					<input
+						id="limiteCredito" type="number" ng-model="cliente.limiteCredito"
+						name="limiteCredito" class="form-control" required />
+				</div>
+				
+				<div class="form-group">
+					<label for="risco">Risco:</label>
+					<div class="radio">
+					  <label><input type="radio" name="optradio" ng-model="cliente.risco" value="A"><b>A</b></label>
+					  <label><input type="radio" name="optradio" ng-model="cliente.risco" value="B"><b>B</b></label>
+					  <label><input type="radio" name="optradio" ng-model="cliente.risco" value="C"><b>C</b></label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<h4>Endereço</h4>
+					<div class="form-group">
+						<label for="enderecoUF">UF:</label>
+						<input id="enderecoUF" type="text" ng-model="cliente.endereco.uf"
+							name="enderecoUF" class="form-control" required />
+					</div>
+					
+					<div class="form-group">
+						<label for="enderecoMunicipio">Cidade:</label>
+						<input id="enderecoMunicipio" type="text" ng-model="cliente.endereco.cidade"
+							name="enderecoMunicipio" class="form-control" required />
+					</div>
+					
+					<div class="form-group">
+						<label for="enderecoBairro">Bairro:</label>
+						<input id="enderecoBairro" type="text" ng-model="cliente.endereco.bairro"
+							name="enderecoBairro" class="form-control" required />
+					</div>
+					
+					<div class="form-group">
+						<label for="enderecoLogradouro">Logradouro:</label>
+						<input id="enderecoLogradouro" type="text" ng-model="cliente.endereco.logradouro"
+							name="enderecoLogradouro" class="form-control" required />
+					</div>
+					
+					<div class="form-group">
+						<label for="enderecoNumero">Numero:</label>
+						<input id="enderecoNumero" type="number" ng-model="cliente.endereco.numero"
+							name="enderecoNumero" class="form-control" required />
+					</div>
+					
+					<div class="form-group">
+						<label for="enderecoComplemento">Complemento:</label>
+						<input id="enderecoComplemento" type="text" ng-model="cliente.endereco.complemento"
+							name="enderecoComplemento" class="form-control" />
+					</div>
+					
+					<div class="form-group">
+						<label for="enderecoCEP">CEP:</label>
+						<input id="enderecoCEP" type="text" ng-model="cliente.endereco.CEP"
+							name="enderecoCEP" class="form-control" />
+					</div>
+				</div>
+				
+				<div id=button>
+					<input class="btn btn-success" type="submit" ng-value="botaoSalvarAtualizar">
+					<button type="button" class="btn btn-default" ng-click="limpar()">Limpar</button>
+				</div>
+		
+			</form>
+		</div>
+		
+		<div class="col-md-8">
+			<h3>Lista de Clientes</h3>
+			<table class="table table-striped">
+				<tr>
+					<th>Nome</th>
+					<th>Limite de Crédito R$</th>
+					<th>Opções</th>
+				</tr>
+				<tr ng-repeat="c in clientes">
+					<td>{{c.nome}}</td>
+					<td>{{c.limiteCredito}}</td>
+					<td>
+						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalVisualizar" ng-click="visualizar(c)">Visualizar</button>
+						<button type="button" class="btn btn-primary" ng-click="acaoAtualizar(c)">Editar</button>
+						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" ng-click="acaoExcluir(c)">Excluir</button>
+					</td>
+				</tr>
+			</table>
+				
+			<div id="modalVisualizar" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h4 class="modal-title">Dados Cliente</h4>
+			      </div>
+			      <div class="modal-body">
+			      	<div class="form-group">
+			      		<label>Nome:</label>{{clienteSelecionado.nome}}
+			      	</div>
+			      	<div class="form-group">
+			      		<label>Limite de Crédito (R$):</label>{{clienteSelecionado.limiteCredito}}
+			      	</div>
+			      	<div class="form-group">
+			      		<label>Risco:</label>{{clienteSelecionado.risco}}
+			      	</div>
+			      	<div class="form-group">
+			      		<label>Taxa de Juros (%):</label>{{clienteSelecionado.juros}}
+			      	</div>
+			      	<div class="form-group">
+			      		<label>UF:</label>{{clienteSelecionado.endereco.uf}}
+			      	</div>
+			      	<div class="form-group">
+			      		<label>Cidade:</label>{{clienteSelecionado.endereco.cidade}}
+			      	</div>
+			      	<div class="form-group">
+			      		<label>Bairro:</label>{{clienteSelecionado.endereco.bairro}}
+			      	</div>
+			      	<div class="form-group">
+			      		<label>Logradouro:</label>{{clienteSelecionado.endereco.logradouro}}
+				    </div>
+				    <div class="form-group">
+				      	<label>Número:</label>{{clienteSelecionado.endereco.numero}}
+				    </div>
+				    <div class="form-group">
+				      	<label>Complemento:</label>{{clienteSelecionado.endereco.complemento}}
+				    </div>
+				    <div class="form-group">
+				      	<label>CEP:</label>{{clienteSelecionado.endereco.CEP}}
+			      	</div>
+			      </div>
+			      <div class="modal-footer">
+			      	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="cancelar()">Fechar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
+			<div id="modalExcluir" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h4 class="modal-title">Exluir Cliente</h4>
+			      </div>
+			      <div class="modal-body">
+			        <p>Tem certeza que deseja excluir o cliente: </p> <b>{{clienteSelecionado.nome}}</b>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancelar()">Não</button>
+			      	<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="excluir()">Sim</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="border-top-style: groove;">
+		<div class="col-md-12"><h2 style="text-align:center;">Matheus Tabares</h2></div>
+	</div>
+</div>
